@@ -8,6 +8,8 @@ RUN apk add git
 
 RUN go get -t github.com/lib/pq
 
+RUN go get -t github.com/rs/cors
+
 WORKDIR /app
 
 COPY main.go .

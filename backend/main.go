@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	_ "github.com/lib/pq"
+    "github.com/rs/cors"
 )
 
 type Person struct {
@@ -87,14 +88,29 @@ func POSTHandler(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 }
 
+func Cors(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html; charset=ascii")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers","Content-Type,access-control-allow-origin, access-control-allow-headers")
+			w.Write([]byte("Hello, World!"))
+}
+  
+
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "No Endpoint ")
-	})
+	mux := http.NewServeMux()
 
-	http.HandleFunc("/people", GETHandler)
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+        w.Header().Set("Content-Type", "application/json")
+        w.Write([]byte("{\"halo\": \"world\"}"))
+    })
 
-	http.HandleFunc("/insert", POSTHandler)
+	mux.HandleFunc("/people", GETHandler)
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	mux.HandleFunc("/insert", POSTHandler)
+
+	// cors.Default() setup the middleware with default options being
+    // all origins accepted with simple methods (GET, POST). See
+    // documentation below for more options.
+    handler := cors.Default().Handler(mux)
+    log.Fatal(http.ListenAndServe(":8080", handler))
 }

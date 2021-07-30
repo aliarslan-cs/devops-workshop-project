@@ -1,7 +1,11 @@
 FROM postgres:latest
+
 ENV POSTGRES_USER workshop
+
 ENV POSTGRES_PASSWORD workshop
+
 ENV POSTGRES_DB devops-workshop
+
 ADD create-db.sql /docker-entrypoint-initdb.d/
 
 # docker network create the-network --driver bridge
