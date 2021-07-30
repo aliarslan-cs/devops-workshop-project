@@ -1,16 +1,17 @@
 FROM node:16
-# ENV NODE_ENV=production
-ENV NODE_ENV=development
+ENV NODE_ENV=production
+# ENV NODE_ENV=development
 
 WORKDIR /app
 
 COPY ["package.json", "package-lock.json*", "./"]
 
-# RUN npm install --production
-RUN npm install
+RUN npm install --production
+# RUN npm install
 
 COPY . .
 
+# todo: should actually do yarn build for prod, see readme
 ENTRYPOINT ["yarn", "start"]
 
 # docker build -t aliarsal/workshop-project-frontend:1.0 .

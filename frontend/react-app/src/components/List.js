@@ -3,17 +3,24 @@ const List = (props) => {
   const { people } = props;
   if (!people || people.length === 0) return <p>No friends, sorry</p>;
   return (
-    <ul>
-      <h2 className='list-head'>Available Nick Names</h2>
-      {people.map((person) => {
-        return (
-          <li key={person.name} className='list'>
-            <span className='repo-text'>{person.name} </span>
-            <span className='repo-description'>{person.nickname}</span>
-          </li>
-        );
-      })}
-    </ul>
+    <table className="table table-striped table-light">
+      <thead>
+        <tr>
+          <th scope="col">Full Name</th>
+          <th scope="col">Nick Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {people.map((person) => {
+          return (
+            <tr key={person.name}>
+              <td>{person.name}</td>
+              <td>{person.nickname}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 };
 export default List;

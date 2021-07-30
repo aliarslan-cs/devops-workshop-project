@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './App.css';
+// import './App.css';
 import List from './components/List';
 import withListLoading from './components/withListLoading';
 
@@ -20,24 +20,12 @@ function App() {
     });
   }, [setAppState]);
   return (
-    <div className='App'>
-      <div className='container'>
-        <h1>My Placeholder</h1>
-      </div>
-      <div className='repo-container'>
-        <ListLoading isLoading={appState.loading} people={appState.people} />
-      </div>
-      <footer>
-        <div className='footer'>
-          Built{' '}
-          <span role='img' aria-label='love'>
-            💚
-          </span>{' '}
-          with by Shedrack Akintayo
-        </div>
-      </footer>
-    </div>
+  <div className="row">
+    <ListLoading isLoading={appState.loading} people={appState.people} />
+  </div>
   );
 }
 
 export default App;
+
+// parts of code by Shedrack Akintayo
