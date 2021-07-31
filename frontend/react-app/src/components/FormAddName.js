@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
 
-function FormAddName(Component) {
+function FormAddName(props) {
   const [name, setName] = useState('');
   const [nick, setNick] = useState('');
   const [loading, setLoading] = useState(false);
@@ -20,6 +20,7 @@ function FormAddName(Component) {
       setName('');
       setNick('');
       setLoading(false);
+      props.rerenderParentCallback();
     }).catch(err => {
       setLoading(false);
       setIsError(true);
