@@ -1,0 +1,31 @@
+version: '3.3'
+services:
+  the-backend:
+    image: "aliarsal/workshop-project-backend:1.0"
+    ports:
+    - "8080:8080"
+    networks:
+      the-network:
+    depends_on:
+      - the-db
+  the-frontend:
+    image: "aliarsal/workshop-project-frontend:1.0"
+    ports:
+    - "8090:80"
+    networks:
+      the-network:
+    depends_on:
+      - the-backend
+  the-db:
+    image: "aliarsal/workshop-project-db:1.0"
+    ports:
+    - "5432:5432"
+    networks:
+      the-network:
+    volumes:
+      - db_data:/var/lib/postgresql/data
+networks:
+    the-network:
+volumes:
+  db_data: {}
+      
