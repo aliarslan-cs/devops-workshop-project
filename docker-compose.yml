@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   the-backend:
-    image: "aliarsal/workshop-project-backend:1.0"
+    image: "aliarsal/workshop-project-backend:v0.0.1"
     ports:
     - "8080:8080"
     networks:
@@ -9,7 +9,7 @@ services:
     depends_on:
       - the-db
   the-frontend:
-    image: "aliarsal/workshop-project-frontend:1.0"
+    image: "aliarsal/workshop-project-frontend:v0.0.10"
     ports:
     - "8090:80"
     networks:
@@ -17,7 +17,7 @@ services:
     depends_on:
       - the-backend
   the-db:
-    image: "aliarsal/workshop-project-db:1.0"
+    image: "aliarsal/workshop-project-db:v0.0.1"
     ports:
     - "5432:5432"
     networks:
