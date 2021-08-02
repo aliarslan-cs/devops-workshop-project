@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workshop-backend-deployment
+  labels:
+    type: deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: workshop-backend-app
+  template:
+    metadata:
+      labels:
+        app: workshop-backend-app
+        type: pod
+    spec:
+      containers:
+      - name: workshop-backend-container
+        image: aliarsal/workshop-project-backend:v0.0.1
+        ports:
+        - containerPort: 8080
+          name: tcp

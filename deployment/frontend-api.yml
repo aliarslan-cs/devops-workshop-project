@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workshop-frontend-deployment
+  labels:
+    type: deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: workshop-frontend-app
+  template:
+    metadata:
+      labels:
+        app: workshop-frontend-app
+        type: pod
+    spec:
+      containers:
+      - name: workshop-frontend-container
+        image: aliarsal/workshop-project-frontend:v0.0.14
+        ports:
+        - containerPort: 80
+          name: tcp
