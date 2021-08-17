@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: workshop-backend-container
-        image: aliarsal/workshop-project-backend:v0.0.1
+        image: aliarsal/workshop-project-backend:v0.0.2
         ports:
         - containerPort: 8080
           name: tcp

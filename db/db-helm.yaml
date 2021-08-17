@@ -1,0 +1,28 @@
+global:
+  postgresql:
+    postgresqlUsername: workshop
+    postgresqlPassword: workshop
+    postgresqlDatabase: devops-workshop
+
+postgresqlPostgresPassword: workshop
+
+replication:
+  enabled: true
+  synchronousCommit: "remote_write"
+  readReplicas: 1
+  numSynchronousReplicas: 1
+
+initdbScripts:
+  my_init_script.sh: |
+    #!/bin/sh
+    echo "=================================================================================="
+    echo "=========== CREATING SCHEMA / UPDATE USER/PWD/DB IF YOU CHANGE ABOVE. ============"
+    echo "=================================================================================="
+    ls
+    psql "host=localhost port=5432 dbname=devops-workshop user=workshop password=workshop" << EOF
+      CREATE TABLE IF NOT EXISTS person(name varchar(40), nickname varchar(40));
+      select * from person;
+    EOF
+    echo "=================================================================================="
+    echo "================================= DONE ==========================================="
+    echo "=================================================================================="

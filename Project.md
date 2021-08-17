@@ -35,3 +35,18 @@ The Kubernetes manifest should include
 
 - Deployment:
 - Service: exposing frontend on NodePort and backend on Cluster IP
+
+# Phase 4 (Optional):
+
+This is optional phase but do try to complete this, as having knowledge is one thing, but once you implement all this, you can easily work on Kubernetes in future…
+
+In Backend Kubernetes Deployment, add Resources for request and limits on memory & CPU (need to read it yourself), add Probes(readiness & liveness).
+
+Backend should have environment variables NAME and PASSWORD that should be set from a Secret named backend and a file feedback.txt on path /user/feedback.txt  that should be set from Configmap named backend where you can give the feedback for the course
+
+Also in the backend repository add Configmap & Secret manifest files containing above environment variables and file respectively
+
+Also add RBAC files to run above deployment with a Service Account with permissions to get, list, watch Pods cluster wide
+
+Also if you used DB for your app, try to deploy the DB from the public helm chart
+Can also add helm chart for the application ( totally optional )

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: workshop-frontend-container
-        image: aliarsal/workshop-project-frontend:v0.0.14
+        image: aliarsal/workshop-project-frontend:v0.0.18
         ports:
         - containerPort: 80
           name: tcp
