@@ -72,7 +72,7 @@ Also add RBAC files to run above deployment with a Service Account with permissi
 Also if you used DB for your app, try to deploy the DB from the public helm chart
 Can also add helm chart for the application ( totally optional )
 
-### Solution:
+### Solution
 
 The helm chart scripts for the-db are maintained at https://github.com/aliarslan-cs/devops-workshop-project/tree/main/db.
 
