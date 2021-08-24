@@ -14,6 +14,12 @@ So you will have at least 2 repositories based on the number of your microservic
 1. `Backend`: Exposes an API endpoint. This repo will contain the `backend code`, `Dockerfile` to build image, `Docker compose` manifest to deploy it.
 2. `Frontend`: Calls the backend and displays the result. This repo will contain the `frontend code`, `Dockerfile` to build image, `Docker compose` manifest to deploy it.
 
+
+### Solution
+
+1. The frontend code is maintained at https://github.com/aliarslan-cs/devops-workshop-frontend. I productionized the docker image using flags from node.js and using a multi-stage build. The Docker Hub repository is hosted at https://hub.docker.com/repository/docker/aliarsal/workshop-project-frontend.
+1. The backend code is maintained at https://github.com/aliarslan-cs/devops-workshop-backend. I used golang to create a simple Nicknames registry app and also used a multi-stage builds for its docker image. The Docker Hub repository is hosted at https://hub.docker.com/repository/docker/aliarsal/workshop-project-backend.
+
 # Phase 2
 
 create pipeline for the services and repos.
@@ -25,6 +31,12 @@ It will be same for all language apps, only Dockerfile will change…
 Github Action to build and push Docker Image
 https://github.com/marketplace/actions/build-and-push-docker-images
 
+### Solution
+
+The CI/CD pipelines for both backend and frontend application are created using GitHub Actions.
+
+1. the-frontend: https://github.com/aliarslan-cs/devops-workshop-frontend/blob/main/.github/workflows/ci-cd.yml
+2. the-backend: https://github.com/aliarslan-cs/devops-workshop-backend/blob/main/.github/workflows/ci-cd.yml
 
 # Phase 3
 
@@ -35,6 +47,15 @@ The Kubernetes manifest should include
 
 - Deployment:
 - Service: exposing frontend on NodePort and backend on Cluster IP
+
+### Solution
+
+The deployment manifests for frontend and backend application are available at:
+
+1. the-frontend: https://github.com/aliarslan-cs/devops-workshop-project/tree/main/frontend
+2. the-backend: https://github.com/aliarslan-cs/devops-workshop-project/tree/main/backend
+
+The frontend is exposed on Nodeport. The backend had to be exposed on Nodeport as well, as the frontend application is made using React.js which runs primarily on the frontend and communicates to the backend using APIs.
 
 # Phase 4 (Optional):
 
@@ -50,3 +71,9 @@ Also add RBAC files to run above deployment with a Service Account with permissi
 
 Also if you used DB for your app, try to deploy the DB from the public helm chart
 Can also add helm chart for the application ( totally optional )
+
+### Solution:
+
+The helm chart scripts for the-db are maintained at https://github.com/aliarslan-cs/devops-workshop-project/tree/main/db.
+
+Note: I could not work on the remaining tasks of Phase 4 yet.
